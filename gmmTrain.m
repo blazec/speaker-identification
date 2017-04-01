@@ -48,7 +48,17 @@ function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
         gmm = struct();
         gmm.name = name;
         gmm.weights = zeros(1,M) + (1 / M);
-        gmm.means = datasample(X, M, 'Replace', false)';
+        
+        numSamples = size(X,1);
+        randomizedIndices = randperm(numSamples);
+        randomSample = randomizedIndices(1:M);
+        means = zeros(M,size(X,2));
+        for iRs=1:length(randomSample)
+            means(iRs,:) = X(randomSample(iRs),:);
+        end 
+        
+        gmm.means = means';
+%         gmm.means = datasample(X, M, 'Replace', false)';
         gmm.cov = repmat(eye(size(X, 2)), 1, 1, M);
         
         i = 0;

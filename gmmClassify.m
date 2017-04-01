@@ -1,9 +1,9 @@
-dir_train = 'Training';
-dir_test = 'Testing';
+dir_train = '/u/cs401/speechdata/Training';
+dir_test = '/u/cs401/speechdata/Testing';
 
 M = 9;
-max_iter = 10;
-epsilon = .001;
+max_iter = 100;
+epsilon = .00001;
 gmms = gmmTrain(dir_train, max_iter, epsilon, M);
 
 testMfccFiles = dir([dir_test, filesep, '*.mfcc']);
