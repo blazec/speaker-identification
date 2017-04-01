@@ -58,7 +58,6 @@ function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
         end 
         
         gmm.means = means';
-%         gmm.means = datasample(X, M, 'Replace', false)';
         gmm.cov = repmat(eye(size(X, 2)), 1, 1, M);
         
         i = 0;
